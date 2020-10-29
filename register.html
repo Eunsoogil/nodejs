@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+</head>
+<body>
+	<!-- use get, not post -->
+	<!-- div, span은 필요가 없다?? -->
+	<header>
+		<h1>Register</h1>
+	</header>
+	<nav>
+		<a href="www.google.com"></a>
+	</nav>
+	<footer>
+		<p>Website made with love</p>
+	</footer>
+	<div>
+		<form method="GET">
+			<span style="color: blue">First Name:</span> <input type="text" name="firstname"><br>
+			Last Name: <input type="text" name="lastname"><br>
+			Email: <input type="email"  name="email" required><br> <!-- email type 폼검증 자동으로 함-->
+			Password: <input type="password" name="password" minlength="5"><br> <!--min은 안됨-->
+			Birthday: <input type="date" name="birthday"><br> <!-- date type 은 폼 검증 뿐 아니라 달력도 생김...-->
+			Gender:<br>
+			<input type="radio" name="gender" value="male">Male<br> <!-- name을 넣으면 하나만 선택 -->
+			<input type="radio" name="gender" value="female">Female<br>
+			<input type="radio" name="gender" value="other">Other<br>
+			Pets: <br>
+			<input type="checkbox" name="cat"> Cat<br>
+			<input type="checkbox" name="dog"> Dog<br>
+			Cars: <br>
+			<!-- <select multiple> -->
+			<select name="cars">
+				<option value="volvo">Volvo</option>
+				<option value="audi">Audi</option>
+			</select><br>
+			<input type="submit" value="Register!">
+			<input type="reset"> <!-- input reset function-->
+		</form>
+	</div>
+</body>
+</html>
