@@ -1,0 +1,83 @@
+/*css tricks(css 연습), unsplash(이미지)
+CSS Cheat Sheet
+
+Reference:
+*https://www.w3schools.com/cssref/css_selectors.asp
+*https://css-tricks.com/almanac/
+
+Cascading Style Sheets at the most basic level it indicates that the order of CSS rules matter. 
+
+
+.class
+#id
+*
+element
+element, element
+element1 element2 (element1 안에 있는 element2만)
+element1 > element2 (element1이 부모인 element2만)
+element1 + element2 (element1이 형제인 element2만)
+:hover
+:last-child
+:first-child
+!important (not recommended)
+
+
+What seletors win out in the cascade depends on:
+-Specificity
+-!important;
+-Source Order
+*/
+
+
+/*Selector{
+	property : value;
+}*/
+* {
+	text-align: right;
+}
+
+body {
+	background-image: url(https://images.unsplash.com/photo-1603901286856-a7f2410a1f21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1668&q=80);
+	background-size: cover;
+	/*웹사이트 화면에 맞게*/
+}
+
+h2, p:hover {
+	color : #AA4139;
+	background: black;
+	text-align: center;
+	border: 5px dashed rgba(255, 176, 170, 0.4);
+	cursor: pointer;
+}
+
+p {
+	color: pink !important;
+	/*cascading을 무시*/
+}
+
+p {
+	color: green;
+	/*CSS : cascading style sheet, "하위로 내려가면서" 스타일을 주는 sheet;*/
+}
+
+li {
+	list-style: none;
+	/*점 사라짐*/
+	display: inline-block;
+}
+
+.webtext {
+	border: 5px solid green;
+}
+
+.active {
+	color: red;
+}
+
+#div1 {
+	background-color: rgba(0, 0, 255, 0.5);
+}
+
+#div2 {
+	background-color: rgba(255, 0, 0, 0.5);
+}
