@@ -42,6 +42,17 @@ body {
 	/*웹사이트 화면에 맞게*/
 }
 
+img {
+	float: right;
+}
+
+footer {
+	color: red;
+	clear: both;
+	/*안하면 float때문에 하단에 있지 않고 위치가 이상해진다, p의 line-height를 5px로 줄이면 확인 가능*/
+	text-align: center;
+}
+
 h2, p:hover {
 	color : #AA4139;
 	background: black;
@@ -52,6 +63,16 @@ h2, p:hover {
 
 p {
 	color: pink !important;
+	text-decoration: underline;
+	text-transform: uppercase;
+	line-height: 15px;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 80%;
+	font-family: "Nanum Brush Script", Georgia;
+	/*뒤에는 폰트 없을 시*/
+	/*구글폰트*/
+
 	/*cascading을 무시*/
 }
 
