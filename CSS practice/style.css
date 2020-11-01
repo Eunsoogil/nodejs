@@ -1,0 +1,73 @@
+body {
+	margin: 0px;
+	/*브라우저 default margin 제거*/
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	/*
+	display flex : 하위 element의 정렬시 유용;
+	justify-content: element들의 가로 정렬시 사용;
+		flex-start, flex-end, center, space-between, space-around
+		between, around의 차이는 around는 시작과 끝 공간도 정렬
+
+	align-items: 세로 정렬시 사용;
+		flex-start, flex-end, center, baseline, stretch
+		baseline: 컨테이너의 시작 위치에 정렬;
+		stretch: 컨테이너에 맞도록 늘인다;
+
+	flex-direction: 요소들 정렬시 방향 설정;
+		row, row-reverse, column, column-reverse;
+
+	order : flex가 적용된 컨테이너 내의 특정 인자만 조종 가능;
+		기본 0, 왼쪽은 -숫자 오른쪽은 +숫자 로 위치 조종 가능
+
+	align-self : 특정 인자만 세로 정렬 변동 시 사용(align-items와 동일);
+
+	flex-wrap: 너무 많은 인자가 있을 시 넘치는 인자만 따로 정렬;
+		nowrap, wrap, wrap-reverse;
+	
+	flew-flow: flex-direction flex-wrap;
+		ex) column wrap;
+
+	align-content: 줄이 많을 경우 줄 사이 간격 정렬!;
+		flex-start, flex-end, center, spcae-between, space-around, stretch
+
+	flexbox froggy 검색 */
+	justify-content: center;
+}
+
+h1{
+	font-family: fantasy;
+	font-size: 3em;
+	border-bottom: 2px solid pink;
+	border-right: 2px solid pink;
+	width: 400px;
+	text-align: center;
+	box-shadow: 4px 4px 5px #888888;
+	margin : 10px 0 0 0;
+	/*
+	box-shadow: 4px 4px 5px #888888;
+	위 명령어의 경우 브라우저마다 동작을 하지 않을 수도 있다.
+	이걸 방지해서 prefix를 설정해줘야함
+	-moz- 모질라
+	-ms- 인터넷 익스플로러
+	-webkit- 크롬, 파이어폭스
+	-o- 오페라
+	현재 box-shadow의 경우는 최신 크롬에서는 -webkit- 접두사 업이도 동작
+	caniuser.com --> 브라우저마다 사용 가능 여부 알려줌
+	*/
+
+}
+
+img {
+	width: 450px;
+	height: 300px;
+	margin: 10px;
+	transition: all 1s;
+}
+
+img:hover {
+	transform: scale(1.1);
+}
