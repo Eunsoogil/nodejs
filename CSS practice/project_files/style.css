@@ -33,6 +33,37 @@ What seletors win out in the cascade depends on:
 /*Selector{
 	property : value;
 }*/
+
+/*
+display flex : 하위 element의 정렬시 유용;
+justify-content: element들의 가로 정렬시 사용;
+	flex-start, flex-end, center, space-between, space-around
+	between, around의 차이는 around는 시작과 끝 공간도 정렬
+
+align-items: 세로 정렬시 사용;
+	flex-start, flex-end, center, baseline, stretch
+	baseline: 컨테이너의 시작 위치에 정렬;
+	stretch: 컨테이너에 맞도록 늘인다;
+
+flex-direction: 요소들 정렬시 방향 설정;
+	row, row-reverse, column, column-reverse;
+
+order : flex가 적용된 컨테이너 내의 특정 인자만 조종 가능;
+	기본 0, 왼쪽은 -숫자 오른쪽은 +숫자 로 위치 조종 가능
+
+align-self : 특정 인자만 세로 정렬 변동 시 사용(align-items와 동일);
+
+flex-wrap: 너무 많은 인자가 있을 시 넘치는 인자만 따로 정렬;
+	nowrap, wrap, wrap-reverse;
+
+flew-flow: flex-direction flex-wrap;
+	ex) column wrap;
+
+align-content: 줄이 많을 경우 줄 사이 간격 정렬!;
+	flex-start, flex-end, center, spcae-between, space-around, stretch
+
+flexbox froggy 검색 */
+
 * {
 	text-align: right;
 }
