@@ -1,0 +1,53 @@
+DOM Selectors
+--------------
+getElementsByTagName
+getElementsByClassName > array로 온다
+	getElementsByClassName("")[0]
+getElementById
+
+
+
+더 추천하는 방식
+querySelector
+querySelectorAll > array로 온다
+//querySelectorAll("h1", "li"); 이런식으로도 가능
+//id, class모두 jquery랑 동일한 방식!
+
+
+
+getAttribute
+document.querySelector("li").getAttribute("random");
+setAttribute
+document.querySelector("li").setAttribute("random", "1000");
+
+codepen.io >> 여러 타이틀을 css작업해놓음
+
+
+##Changing Styles
+style.{property} //ok
+document.querySelector("h1").style.backfround = "yellow";
+>> 이 방법의 단점은 하드코딩된다는 점이다. class로 스타일을 주는게 아님
+
+
+
+
+className //best
+classList //best >> array로 온다
+classList.add or classList.remove로 가능 > array도 가능한가?
+>>> array는 불가능!
+>>> 구글 콘솔에 document.querySelector("#oneGoogleBar").classList
+>>> 모든 function이 나온다
+
+classList.add
+classList.remove
+classList.toggle
+
+
+
+##Bonus
+innerHTML //DANGEROUS
+
+parentElement
+children
+
+##It is important to CACHE selectors in variables
