@@ -1,3 +1,6 @@
+//scope = 스코프란 어떤 변수들에 접근할수 있는지를 정의
+
+
 var b = "can i access this?";
 
 function aa(){
