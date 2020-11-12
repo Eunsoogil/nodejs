@@ -47,6 +47,7 @@ classList.toggle
 ##Bonus
 innerHTML //DANGEROUS
 >>> innerHTML로 변경하는 순간 모든 DOM을 다시 parsing한다!! 비효율
+>>> textContent사용하기
 
 parentElement
 children
