@@ -9,6 +9,7 @@ ReactDOM.render(
     <App />
   </React.StrictMode>,
 // <h1>Hello World</h1>,
+// npx create-react-app my-app, 새로운 명령어
   document.getElementById('root')
 );
 
