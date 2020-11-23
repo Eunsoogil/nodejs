@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
+import App from './App';
 //import Hello from './Hello';
 import Card from './Card';
 import CardList from './CardList'
@@ -22,7 +22,8 @@ ReactDOM.render(
 	// <Card id={robots[1].id} name={robots[1].name} email={robots[1].email} />
 	// <Card id={robots[2].id} name={robots[2].name} email={robots[2].email} />
 //</div>
-<CardList robots = {robots}/>
+// <CardList robots = {robots}/>
+<App />
 ,  document.getElementById('root')
 );
 
