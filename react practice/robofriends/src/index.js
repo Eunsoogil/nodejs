@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
+//import Hello from './Hello';
+import Card from './Card';
 import reportWebVitals from './reportWebVitals';
+import 'tachyons' // 부트스트랩같은 css 라이브러리
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+// <React.StrictMode>
+// <App />
+// </React.StrictMode>,
 // <h1>Hello World</h1>,
 // npx create-react-app my-app, 새로운 명령어
+//<Hello greeting={'Hello' + 'React Ninja'}/>,
+// greeting은 property, hello.js에서 선언한 property를 사용
+<Card />,
   document.getElementById('root')
 );
 
