@@ -4,6 +4,7 @@ import React, {Component} from 'react'; //추가
 import CardList from './CardList'
 import SearchBox from './SearchBox'
 import {robots} from './robots';
+import './App.css'
 
 // function App() {
 //   return (
@@ -55,10 +56,16 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      robots : robots,
+      //robots : robots,
+      robots : [], // 실제로는 배열 형식으로 받음
       searchfield : ''
     }
   }
+
+  componentDidMount() {
+    this.setState({ robots : robots})
+  }
+
 
   //onSearchChange(event) { //this가 동작하지 않음, SearchBox.js에서 찾으려고 하기 때문
   onSearchChange = (event) => {
@@ -73,7 +80,7 @@ class App extends Component {
 
     return (
       <div className = 'tc'>
-        <h1>RoboFriends</h1>
+        <h1 className = 'f1'>RoboFriends</h1>
         <SearchBox searchChange={this.onSearchChange}/>
         <CardList robots={filteredRobots}/>
       </div>
