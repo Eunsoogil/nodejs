@@ -1,10 +1,11 @@
 import React, {Component} from 'react'; //추가
 //import logo from './logo.svg';
 //import './App.css';
-import CardList from './CardList'
-import SearchBox from './SearchBox'
-import {robots} from './robots';
+import CardList from '../components/CardList'
+import SearchBox from '../components/SearchBox'
+//import {robots} from './robots';
 import './App.css'
+import Scroll from '../components/Scroll'
 
 // function App() {
 //   return (
@@ -60,10 +61,16 @@ class App extends Component {
       robots : [], // 실제로는 배열 형식으로 받음
       searchfield : ''
     }
+    console.log(1);
   }
 
   componentDidMount() {
-    this.setState({ robots : robots})
+    fetch("http://jsonplaceholder.typicode.com/users").then(response => {
+      return response.json();
+    }).then(users => {
+      this.setState({ robots : users})
+    })
+    console.log(2);
   }
 
 
@@ -76,13 +83,21 @@ class App extends Component {
     const filteredRobots = this.state.robots.filter(robot => {
       return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
     })
+
+    if(this.state.robots.length === 0) {
+      return <h1 className = 'tc f1'>Loading</h1>
+    }
+
     //console.log(filteredRobots);
+    console.log(3); //순서 1323, render가 또 시작되는 이유는 state가 변하기 때문
 
     return (
       <div className = 'tc'>
         <h1 className = 'f1'>RoboFriends</h1>
         <SearchBox searchChange={this.onSearchChange}/>
-        <CardList robots={filteredRobots}/>
+        <Scroll>
+          <CardList robots={filteredRobots}/>
+        </Scroll>
       </div>
     );
   }

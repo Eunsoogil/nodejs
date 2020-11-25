@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './containers/App';
 //import Hello from './Hello';
-import Card from './Card';
-import CardList from './CardList'
+// import Card from './Card';
+// import CardList from './CardList'
 import reportWebVitals from './reportWebVitals';
 import 'tachyons' // 부트스트랩같은 css 라이브러리
-import {robots} from './robots';
+//import {robots} from './robots';
 
 ReactDOM.render(
 // <React.StrictMode>
