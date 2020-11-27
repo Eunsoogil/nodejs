@@ -6,6 +6,10 @@ import SearchBox from '../components/SearchBox'
 //import {robots} from './robots';
 import './App.css'
 import Scroll from '../components/Scroll'
+import ErrorBoundry from '../components/ErrorBoundry'
+//콘솔창 끄기 컨트롤+c
+//npm build or npm run build = minified 된 코드가 build 폴더에 저장, 해당 폴더만 배포가능
+
 
 // function App() {
 //   return (
@@ -80,11 +84,16 @@ class App extends Component {
   }
 
   render() {
-    const filteredRobots = this.state.robots.filter(robot => {
-      return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+    const {robots, searchfield} = this.state;
+    // const filteredRobots = this.state.robots.filter(robot => { // this.state를 지움
+    const filteredRobots = robots.filter(robot => {
+      // return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+      return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     })
 
-    if(this.state.robots.length === 0) {
+    // if(this.state.robots.length === 0) {
+    // if(robots.length === 0) {
+    if(!robots.length) {
       return <h1 className = 'tc f1'>Loading</h1>
     }
 
@@ -96,7 +105,9 @@ class App extends Component {
         <h1 className = 'f1'>RoboFriends</h1>
         <SearchBox searchChange={this.onSearchChange}/>
         <Scroll>
-          <CardList robots={filteredRobots}/>
+          <ErrorBoundry>
+            <CardList robots={filteredRobots}/>
+          </ErrorBoundry>
         </Scroll>
       </div>
     );
