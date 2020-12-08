@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 //import Clarifai from 'Clarifai';
 import Navigation from './components/Navigation/Navigation';
+import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Logo from './components/Logo/Logo';
 import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
@@ -30,21 +31,39 @@ class App extends Component {
     super();
     this.state = {
       input: '',
+      imageUrl: '',
+      box: {}
     }
   }
 
+  calculateFaceLocation = (data) => {
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.querySelector('#inputImage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+    return {
+      leftCol: clarifaiFace.left_col * width,
+      topRow: clarifaiFace.top_row * height,
+      rightCol: width - (clarifaiFace.right_col * width),
+      bottomRow: height - (clarifaiFace.bottom_row * height)
+    }
+  }
+
+  displayFaceBox = (box) => {
+    this.setState({box: box});
+  }
+
   onInputChange = (event) => {
-    console.log(event.target.value);
+    this.setState({input : event.target.value});
   }
 
   onButtonSubmit = () => {
-    app.models.initModel({id: Clarifai.GENERAL_MODEL, version: "aa7f35c01e0642fda5cf400f543e7c40"})
-      .then(generalModel => {
-        return generalModel.predict("@@sampleTrain");
-      })
-      .then(response => {
-        var concepts = response['outputs'][0]['data']['concepts']
-      })
+    this.setState({imageUrl: this.state.input})
+    app.models
+    .predict('d02b4508df58432fbb84e800597b8959',
+      this.state.input)
+    .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
+    .catch(err => console.log(err))
   }
 
   render() {
@@ -57,7 +76,7 @@ class App extends Component {
         <Logo />
         <Rank />
         <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
-        {/*<FaceRecognition />*/}
+        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
       </div>
     );
   }
