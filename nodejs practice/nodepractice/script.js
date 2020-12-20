@@ -40,6 +40,20 @@
 
 // console.log(a+b);
 
-const c = require('fs');
+//const c = require('http');
+//const c = require('fs').readFile; //파일 읽을 수 잇음
 //package.json 가지고 있으면 안됨, package.js에 정의해줘야하는듯
-console.log(c);
+//console.log(c);
+
+//nodemon
+//npm init -y //package.json 생성
+//npm install nodemon --save-dev
+//package.json 수정
+
+
+const script2 = require('./script2.js')
+
+const a = script2.largeNumber;
+const b = 5;
+
+console.log(a+b);
