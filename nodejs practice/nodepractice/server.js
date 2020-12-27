@@ -50,6 +50,14 @@ const app = express();
 // 	res.send(user);
 // })
 
+//use : get이나 post 전처리
+app.use((req, res, next) => {
+	console.log('using use');
+	//브라우저가 아닌 서버 콘솔에 찍힌다!!
+	next(); //안하면 무한 로딩
+})
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 app.get('/', (req, res) => {
 	res.send("getting root");
 })
@@ -58,6 +66,8 @@ app.get('/profile', (req, res) => {
 	res.send("getting profile");
 })
 
+//postman이라는 것을 사용.. 그냥 할수는 없나?
+//cors오류로 안됨
 app.post('/profile', (req, res) => {
 	const user = {
 		name: 'Sally',
