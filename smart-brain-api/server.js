@@ -23,6 +23,7 @@ const database = {
 	]
 }
 
+
 // bodyparser 모듈 express에 업데이트
 // app.use(express.urlencoded({extended: false}));
 app.use(express.json());
