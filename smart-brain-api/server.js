@@ -12,6 +12,7 @@ const database = {
 			id: '123',
 			name: 'John',
 			email: 'john@gmail.com',
+			password: '123',
 			entries: 0,
 			joined: new Date()
 		},
@@ -19,6 +20,7 @@ const database = {
 			id: '124',
 			name: 'Sally',
 			email: 'sally@gmail.com',
+			password: '123',
 			entries: 0,
 			joined: new Date()
 		}
@@ -50,7 +52,7 @@ app.post('/signin', (req, res) => {
 
 	// });
 	if(req.body.email === database.users[0].email &&
-		req.body.password === database.user[0].password){
+		req.body.password === database.users[0].password){
 		res.json('success');
 	} else {
 		res.status(400).json('error')
