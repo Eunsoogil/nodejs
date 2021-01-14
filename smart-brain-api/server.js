@@ -75,12 +75,13 @@ app.post('/register', (req, res) => {
 	res.json(database.users[database.users.length - 1]);
 })
 
-app.get('/profile/:id', (req, res) => { //:id 파라미터 가져옴
+app.put('/profile/:id', (req, res) => { //:id 파라미터 가져옴
 	const { id } = req.params;
 	let found = false;
 	database.users.forEach(user => {
 		if(user.id === id){
 			found = true;
+			user.entries++
 			return res.json(user);
 		}
 	})
