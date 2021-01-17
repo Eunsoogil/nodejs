@@ -1,0 +1,5 @@
+RDB nosql 차이 : RDB는 데이터가 관계형, nosql은 객체식
+ex) nosql : user1, user2, user3 ...
+
+설치(window)
+1. 구글에 postgresql 검색 후 다운
