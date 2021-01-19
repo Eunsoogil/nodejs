@@ -3,3 +3,9 @@ ex) nosql : user1, user2, user3 ...
 
 설치(window)
 1. 구글에 postgresql 검색 후 다운
+
+2. 환경변수 설정, Path에 편집 누른 후 bin 위치 추가 (default : C:\Program Files\PostgreSQL\13\bin)
+
+3. cmd > psql -U postgres > 비번
+
+4. pgAdmin4
