@@ -9,3 +9,7 @@ ex) nosql : user1, user2, user3 ...
 3. cmd > psql -U postgres > 비번
 
 4. pgAdmin4
+
+5. cmd로 하는법
+- \c db명
+- cmd
