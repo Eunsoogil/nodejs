@@ -1,0 +1,3 @@
+knex.js 설치
+npm install knex
+npm install pg (postgres)
