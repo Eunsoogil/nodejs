@@ -1,0 +1,12 @@
+cmd에서 \d > 테이블 정보
+\d tablename > 특정 테이블 정보
+
+db 생성
+createdb 'db명';
+
+컬럼 추가
+ALTER TABLE table_name ADD coloum datatype;
+
+접속 방법
+\c db명, psql db명
+
