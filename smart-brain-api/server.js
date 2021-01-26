@@ -32,7 +32,7 @@ const knex = require('knex')({
 //console.log(db.select('*').from('users'));
 
 db.select('*').from('users').then(data => {
-	console.log(data);
+	
 });
 
 const app = express();
@@ -83,16 +83,31 @@ app.post('/signin', (req, res) => {
 	// bcrypt.compare("veggies", hash, function(err, res) {
 
 	// });
-	if(req.body.email === database.users[0].email &&
-		req.body.password === database.users[0].password){
-		res.json(database.users[0]);
-	} else {
-		res.status(400).json('error')
-	}
+	// if(req.body.email === database.users[0].email &&
+	// 	req.body.password === database.users[0].password){
+	// 	res.json(database.users[0]);
+	// } else {
+	// 	res.status(400).json('error')
+	// }
+	db.select('email', 'hash').from('login')
+	.where('email', '=', req.body.email)
+	.then(data => {
+		const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
+		if(isValid){
+			return db.select('*').from('users')
+			.where('email', '=', req.body.email)
+			.then(user => {
+				res.json(user[0])
+			}).catch(err => res.status(400).json('unable to get user'));
+		} else {
+			res.status(400).json('wrong credential');
+		}
+	}).catch(err => res.status(400).json('wrong credential'));
 })
 
 app.post('/register', (req, res) => {
 	const { email, name, password } = req.body;
+	const hash = bcrypt.hashSync(password);
 	// bcrypt.hash("bacon", null, null, function(err, hash) {
     	
 	// });
@@ -104,15 +119,24 @@ app.post('/register', (req, res) => {
 	// 	entries: 0,
 	// 	joined: new Date()
 	// })
-
-	db('users')
-	.returning('*')
-	.insert({
-		email: email,
-		name: name,
-		joined: new Date()
-	}).then(user => {
-		res.json(user[0]);
+	db.transaction(trx => {
+		trx.insert({
+			hash: hash,
+			email: email
+		}).into('login')
+		.returning('email')
+		.then(loginEmail => {
+			return trx('users')
+			.returning('*')
+			.insert({
+				email: loginEmail[0],
+				name: name,
+				joined: new Date()
+			}).then(user => {
+				res.json(user[0]);
+			})			
+		}).then(trx.commit)
+		.catch(trx.rollback)
 	}).catch(err => {
 		res.status(400).json('unable to register') //존재할경우 400날림
 	})
