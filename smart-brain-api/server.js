@@ -3,7 +3,12 @@
 const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
-const knex = require('knex')
+const knex = require('knex');
+
+const register = require('./controllers/register');
+const signin = require('./controllers/signin');
+const profile = require('./controllers/profile');
+const image = require('./controllers/image');
 
 const db = knex({
   client: 'pg',
@@ -31,39 +36,39 @@ const knex = require('knex')({
 
 //console.log(db.select('*').from('users'));
 
-db.select('*').from('users').then(data => {
+// db.select('*').from('users').then(data => {
 	
-});
+// });
 
 const app = express();
 
-const database = {
-	users: [
-		{
-			id: '123',
-			name: 'John',
-			email: 'john@gmail.com',
-			password: '123',
-			entries: 0,
-			joined: new Date()
-		},
-		{
-			id: '124',
-			name: 'Sally',
-			email: 'sally@gmail.com',
-			password: '123',
-			entries: 0,
-			joined: new Date()
-		}
-	],
-	login: [
-		{
-			id: '987',
-			hash: '',
-			email: 'john@gmail.com'
-		}
-	]
-}
+// const database = {
+// 	users: [
+// 		{
+// 			id: '123',
+// 			name: 'John',
+// 			email: 'john@gmail.com',
+// 			password: '123',
+// 			entries: 0,
+// 			joined: new Date()
+// 		},
+// 		{
+// 			id: '124',
+// 			name: 'Sally',
+// 			email: 'sally@gmail.com',
+// 			password: '123',
+// 			entries: 0,
+// 			joined: new Date()
+// 		}
+// 	],
+// 	login: [
+// 		{
+// 			id: '987',
+// 			hash: '',
+// 			email: 'john@gmail.com'
+// 		}
+// 	]
+// }
 
 
 // bodyparser 모듈 express에 업데이트
@@ -76,118 +81,13 @@ app.get('/', (req, res) => {
 	res.send('work')
 })
 
-app.post('/signin', (req, res) => {
-	// bcrypt.compare("bacon", hash, function(err, res) {
+app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) })
 
-	// });
-	// bcrypt.compare("veggies", hash, function(err, res) {
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
 
-	// });
-	// if(req.body.email === database.users[0].email &&
-	// 	req.body.password === database.users[0].password){
-	// 	res.json(database.users[0]);
-	// } else {
-	// 	res.status(400).json('error')
-	// }
-	db.select('email', 'hash').from('login')
-	.where('email', '=', req.body.email)
-	.then(data => {
-		const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
-		if(isValid){
-			return db.select('*').from('users')
-			.where('email', '=', req.body.email)
-			.then(user => {
-				res.json(user[0])
-			}).catch(err => res.status(400).json('unable to get user'));
-		} else {
-			res.status(400).json('wrong credential');
-		}
-	}).catch(err => res.status(400).json('wrong credential'));
-})
+app.put('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) })
 
-app.post('/register', (req, res) => {
-	const { email, name, password } = req.body;
-	const hash = bcrypt.hashSync(password);
-	// bcrypt.hash("bacon", null, null, function(err, hash) {
-    	
-	// });
-	// database.users.push({
-	// 	id: '',
-	// 	name: name,
-	// 	email: email,
-	// 	password: password,
-	// 	entries: 0,
-	// 	joined: new Date()
-	// })
-	db.transaction(trx => {
-		trx.insert({
-			hash: hash,
-			email: email
-		}).into('login')
-		.returning('email')
-		.then(loginEmail => {
-			return trx('users')
-			.returning('*')
-			.insert({
-				email: loginEmail[0],
-				name: name,
-				joined: new Date()
-			}).then(user => {
-				res.json(user[0]);
-			})			
-		}).then(trx.commit)
-		.catch(trx.rollback)
-	}).catch(err => {
-		res.status(400).json('unable to register') //존재할경우 400날림
-	})
-	// .returning('*') return all columns
-})
-
-app.put('/profile/:id', (req, res) => { //:id 파라미터 가져옴
-	const { id } = req.params;
-	// database.users.forEach(user => {
-	// 	if(user.id === id){
-	// 		found = true;
-	// 		user.entries++
-	// 		return res.json(user);
-	// 	}
-	// })
-	db.select('*').from('users').where({
-		id: id
-	}).then(user => {
-		if(user.length){
-			res.json(user[0])
-		} else {
-			res.status(400).json('not found')
-		}
-		
-	}).catch(err => res.status(400).json('error getting user'))
-	// if(!found){
-	// 	res.status(400).json('not found');
-	// }
-})
-
-app.put('/image', (req, res) => {
-	const { id } = req.body;
-	// let found = false;
-	// database.users.forEach(user => {
-	// 	if(user.id === id){
-	// 		found = true;
-	// 		user.entries++;
-	// 		return res.json(user.entries);
-	// 	}
-	// })
-	// if(!found){
-	// 	res.status(400).json('not found');
-	// }
-	db('users').where('id', '=', id)
-	.increment('entries', 1)
-	.returning('entries')
-	.then(entries => {
-		res.json(entries[0]);
-	})
-	.catch(err => res.status(400).json('not found'))
-})
+app.put('/image', (req, res) => { image.handleImage(req, res, db) })
 
 app.listen(3001, () => {
 	console.log('app is running');
