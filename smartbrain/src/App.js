@@ -10,12 +10,6 @@ import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import './App.css';
 
-const Clarifai = require('clarifai');
-
-const app = new Clarifai.App({
- apiKey: '018bcfc87ef245509d7fde1d65094cc8'
-});
-
 const particlesOptions = {
   particles: {
     number: {
@@ -81,10 +75,15 @@ class App extends Component {
   }
 
   onButtonSubmit = () => {
-    this.setState({imageUrl: this.state.input})
-    app.models
-    .predict('d02b4508df58432fbb84e800597b8959',
-      this.state.input)
+    this.setState({imageUrl: this.state.input});
+    fetch('http://localhost:3001/imageurl', {    
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+    .then(response => response.json())
     .then(response => {
       if(response) {
         fetch('http://localhost:3001/image', {    

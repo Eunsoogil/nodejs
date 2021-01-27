@@ -89,6 +89,8 @@ app.put('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) }
 
 app.put('/image', (req, res) => { image.handleImage(req, res, db) })
 
+app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
+
 app.listen(3001, () => {
 	console.log('app is running');
 })
