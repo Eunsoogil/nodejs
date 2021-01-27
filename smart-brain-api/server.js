@@ -91,6 +91,15 @@ app.put('/image', (req, res) => { image.handleImage(req, res, db) })
 
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
+// const PORT = process.env.PORT;
+
+// app.listen(PORT, () => {
+// 	console.log('app is running');
+// })
+
+// console.log(PORT);
+
 app.listen(3001, () => {
 	console.log('app is running');
 })
+
