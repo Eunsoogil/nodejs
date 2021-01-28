@@ -1,0 +1,7 @@
+0. git과 연동하여 올림
+1. 가입
+2. document > deployment > Deploying with Git > heroku CLI install
+3. window깔아봣는데 안됨
+4. npm install -g heroku
+5. create heroku(해당 프로젝트) > crediential error, 로그인 필요
+6. open heroku (안됨, 명령어 자체가)
