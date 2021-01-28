@@ -5,3 +5,4 @@
 4. npm install -g heroku
 5. create heroku(해당 프로젝트) > crediential error, 로그인 필요
 6. open heroku (안됨, 명령어 자체가)
+7. git을 새로 파야할듯
