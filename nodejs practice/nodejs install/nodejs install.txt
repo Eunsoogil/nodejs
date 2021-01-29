@@ -1,3 +1,6 @@
 nodejs >> 브라우저 밖에서 자바스크립트 엔진(v8)을 쓰기 위함
 수업에서 쓰는 것 : react, live-server, lodash, browserify
 npm semver : 버전 체크
+npm install 하면 해당 project의 dependencies를 모두 알아서 내려받음
+npm update, vulnerabilities update
+npm audit fix, vulnerabilities update
