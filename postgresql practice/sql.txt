@@ -10,6 +10,9 @@ ALTER TABLE table_name ADD coloum datatype;
 접속 방법
 \c db명, psql db명
 
+접속 종료
+\q
+
 create table users (id serial PRIMARY KEY, name VARCHAR(100), email text UNIQUE NOT NULL, entries BIGINT DEFAULT 0, joined TIMESTAMP NOT NULL);
 
 create table login (id serial PRIMARY KEY, hash VARCHAR(100) NOT NULL, email text UNIQUE NOT NULL);

@@ -3,6 +3,26 @@
 2. document > deployment > Deploying with Git > heroku CLI install
 3. window깔아봣는데 안됨
 4. npm install -g heroku
-5. create heroku(해당 프로젝트) > crediential error, 로그인 필요
-6. open heroku (안됨, 명령어 자체가)
+5. heroku create(해당 프로젝트) > crediential error, 로그인 필요
+6. heroku open (안됨, 명령어 자체가)
 7. git을 새로 파야할듯
+8. git 새로팜, 같은 문제 발생
+9. 1. git bash에서 실행 모든 명령어 정상 동작
+9. 2. git push heroku HEAD:master
+10. heroku logs --tail
+11. heroku 는 포트 따로 있음
+12. server deployment 성공
+
+
+0. db
+1. heroku data > create postgresql
+2. heroku addons
+3. heroku pg:info (정보), heroku pg:psql
+4. server와 연결
+5. heroku config > 실제 db url줌
+
+
+
+0.react
+1. package json에 start부분 변경(원래 "start": "react-scripts start")
+2. npm install serve -s
