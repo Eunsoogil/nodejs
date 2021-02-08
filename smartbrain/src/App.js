@@ -58,12 +58,28 @@ class App extends Component {
     const image = document.querySelector('#inputImage');
     const width = Number(image.width);
     const height = Number(image.height);
-    return {
-      leftCol: clarifaiFace.left_col * width,
-      topRow: clarifaiFace.top_row * height,
-      rightCol: width - (clarifaiFace.right_col * width),
-      bottomRow: height - (clarifaiFace.bottom_row * height)
+    let length = data.outputs[0].data.regions.length;
+    let firstdata = '';
+    let resultdata = {};
+    let result = [];
+    for (let i = 0; i < length; i++) {
+      let firstdata = data.outputs[0].data.regions[i].region_info.bounding_box;
+      let resultdata = {
+        leftCol: firstdata.left_col * width,
+        topRow: firstdata.top_row * height,
+        rightCol: width - (firstdata.right_col * width),
+        bottomRow: height - (firstdata.bottom_row * height)        
+      }
+      result.push(resultdata)
     }
+
+    return result;
+    // return {
+    //   leftCol: clarifaiFace.left_col * width,
+    //   topRow: clarifaiFace.top_row * height,
+    //   rightCol: width - (clarifaiFace.right_col * width),
+    //   bottomRow: height - (clarifaiFace.bottom_row * height)
+    // }
   }
 
   displayFaceBox = (box) => {
