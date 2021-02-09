@@ -4,8 +4,11 @@ import './ImageLinkForm.css'
 const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
 	return (
 		<div>
-			<p className = 'f3'>
-				{'This Magic Brain will detect faces in your pictures. Give it a try.'}
+			<p className = 'f4'>
+				{'이미지 주소(이미지 URL)을 입력하시면 안면인식됩니다!'}
+			</p>
+			<p className = 'f4'>
+				{'인터넷에 올라온 이미지를 우클릭, 이미지 주소 복사하시면 됩니다 :)'}
 			</p>
 			<div className = 'center'>
 				<div className = "form center pa4 br3 shadow-5">
@@ -13,7 +16,7 @@ const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
 					<button
 						className="w-30 grow f4 link ph3 pv2 dib white bg-black"
 						onClick={onButtonSubmit}
-					>Detect</button>
+					>안면인식</button>
 				</div>
 			</div>
 		</div>

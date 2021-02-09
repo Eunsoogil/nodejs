@@ -46,9 +46,9 @@ class Register extends React.Component {
 				<main className="pa4 black-80">
 				  <div className="measure">
 				    <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-				      <legend className="f4 fw6 ph0 mh0">Sign Up</legend>
+				      <legend className="f4 fw6 ph0 mh0">회원가입</legend>
 				      <div className="mt3">
-				        <label className="db fw6 lh-copy f6" htmlFor="email-address">Name</label>
+				        <label className="db fw6 lh-copy f6" htmlFor="email-address">이름</label>
 				        <input
 				        	className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
 				        	type="text"
@@ -58,7 +58,7 @@ class Register extends React.Component {
 				        />
 				      </div>
 				      <div className="mt3">
-				        <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+				        <label className="db fw6 lh-copy f6" htmlFor="email-address">이메일</label>
 				        <input
 				        	className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
 				        	type="email"
@@ -68,7 +68,7 @@ class Register extends React.Component {
 				        />
 				      </div>
 				      <div className="mv3">
-				        <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+				        <label className="db fw6 lh-copy f6" htmlFor="password">비밀번호</label>
 				        <input
 				        	className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
 				        	type="password"

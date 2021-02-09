@@ -4,10 +4,7 @@ const Rank = ({ name, entries }) => {
 	return (
 		<div>
 			<div className='white f3'>
-				{`${name}, your current entry count is...`}
-			</div>
-			<div className='white f1'>
-				{entries}
+				{`${name}님, 안면인식을 ${entries}번 사용하셨습니다!`}
 			</div>
 		</div>
 	)
